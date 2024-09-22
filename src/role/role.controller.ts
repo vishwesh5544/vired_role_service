@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Get, Param, Patch, Delete } from '@nestjs/common';
 import { RoleService } from './role.service';
 import { Role } from 'src/models';
+import { Permission } from 'src/enums';
 
 @Controller('roles')
 export class RoleController {
@@ -10,7 +11,7 @@ export class RoleController {
   @Post()
   async create(
     @Body('name') name: string, 
-    @Body('permissions') permissions: Permissions[],
+    @Body('permissions') permissions: Permission[],
   ): Promise<Role> {
     return this.roleService.createRole(name, permissions);
   }

@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Permission } from 'src/enums';
 import { Role, RoleDocument } from 'src/models';
 
 @Injectable()
@@ -8,7 +9,7 @@ export class RoleService {
   constructor(@InjectModel(Role.name) private roleModel: Model<RoleDocument>) {}
 
   // Create a new role with default permissions if not provided
-  async createRole(name: string, permissions: Permissions[] = Object.values(Permissions)): Promise<Role> {
+  async createRole(name: string, permissions: Permission[] = Object.values(Permission)): Promise<Role> {
     const newRole = new this.roleModel({ name, permissions });
     return newRole.save();
   }
