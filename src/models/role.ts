@@ -19,3 +19,15 @@ export class Role {
 }
 
 export const RoleSchema = SchemaFactory.createForClass(Role);
+
+RoleSchema.virtual('id').get(function () {
+  return this._id.toHexString();
+});
+
+RoleSchema.set('toJSON', {
+  virtuals: true,
+});
+
+RoleSchema.set('toObject', {
+  virtuals: true,
+});
